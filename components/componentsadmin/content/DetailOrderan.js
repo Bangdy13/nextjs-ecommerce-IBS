@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { patchData } from "../../../helpers/fetchData";
 import { updateKeranjang } from "../../../store/Actions";
+import BayarBtn from "../../bayarBtn";
 
 const DetailOrderan = ({ detailPesanan, state, dispatch }) => {
   const { auth, orders } = state;
@@ -22,6 +23,28 @@ const DetailOrderan = ({ detailPesanan, state, dispatch }) => {
             dateOfBayar,
             metode,
             delivered,
+          },
+          "ADD_TO_ORDER"
+        )
+      );
+      return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
+    });
+  };
+
+  const handleOrder = (order) => {
+    dispatch({ type: "NOTIFY", payload: { loading: true } });
+    patchData(`order/kirim/${order._id}`, null, auth.token).then((res) => {
+      if (res.err)
+        return dispatch({ type: "NOTIFY", payload: { error: res.err } });
+      const { paid, dateOfBayar } = res.result;
+      dispatch(
+        updateKeranjang(
+          orders,
+          order._id,
+          {
+            ...order,
+            paid,
+            dateOfBayar,
           },
           "ADD_TO_ORDER"
         )
@@ -95,6 +118,16 @@ const DetailOrderan = ({ detailPesanan, state, dispatch }) => {
                 {order.paid
                   ? `Dibayar pada ${order.dateOfBayar}`
                   : "Belum dibayar"}
+                {auth.user.role === "admin" && !order.paid && (
+                  <button
+                    className="btn btn-success"
+                    type="button"
+                    style={{ border: "none", outline: "none" }}
+                    onClick={() => handleOrder(order)}
+                  >
+                    Tandai Dibayar
+                  </button>
+                )}
               </div>
             </div>
             <div>

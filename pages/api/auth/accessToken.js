@@ -1,3 +1,5 @@
+/* eslint-disable import/no-anonymous-default-export */
+
 import Users from "../../../models/User";
 import jwt from "jsonwebtoken";
 import { createAccessToken } from "../../../helpers/generateToken";

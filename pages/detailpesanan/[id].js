@@ -17,7 +17,7 @@ const Detailpesanan = () => {
   useEffect(() => {
     const newArray = orders.filter((order) => order._id === router.query.id);
     setDetailPesanan(newArray);
-  }, [orders]);
+  }, [orders, router.query.id]);
 
   if (!auth.user) return null;
 

@@ -57,7 +57,7 @@ const Keranjang = () => {
       };
       updateCart();
     }
-  }, [callback]);
+  }, [callback, dispatch]);
 
   const handleBayar = async () => {
     if (!alamatlengkap || !handphone || !namalengkap || !sizebaju)

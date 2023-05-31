@@ -8,14 +8,23 @@ const DetailPesanan = ({ detailPesanan, state, dispatch }) => {
   const { auth, orders } = state;
   // const [order, setOrder] = useState([]);
 
-  // const testPay = async () => {
-  //   try {
-  //     const res = await getData("/api/order");
-  //     setOrder(res.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const testPay = () => {
+    try {
+      window.open(
+        `https://api.whatsapp.com/send?phone=6281338990644&text=Saya%20ingin%20melakukan%20verifikasi%20pembayaran%0A%0ANama%20%3A%0A${
+          orders[0].user.name
+        }Email%20%3A%0A ${orders[0].user.email} Total%20%3A%20%0A ${parseInt(
+          orders[0].total
+        )}`,
+        "_blank"
+      );
+      console.log(orders);
+      // const res = await getData("/api/order");
+      // setOrder(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // useEffect(() => {
   //   testPay();
@@ -189,8 +198,11 @@ const DetailPesanan = ({ detailPesanan, state, dispatch }) => {
                   Rp. {order.total}
                 </span>
               </h4>
-              <button className="w-100" onClick={() => testPay(order)}>
-                CASH
+              <button
+                className="w-100 mb-2 btn btn-primary btn-lg py-2"
+                onClick={() => testPay(order)}
+              >
+                Bayar
               </button>
               <BayarBtn total={order.total} order={order} />
             </div>

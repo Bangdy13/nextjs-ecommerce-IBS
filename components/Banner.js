@@ -19,7 +19,7 @@ const Banner = () => {
                   <h3>
                     Get up to <span className="diskon">30%</span> off
                   </h3>
-                  <h3>Girl's Fashion</h3>
+                  <h3>Girl&apos;s Fashion</h3>
                   <button className="btn_shop_now ml-1">
                     <a
                       href="#arrivals"
@@ -41,7 +41,7 @@ const Banner = () => {
                   <h3>
                     Get up to <span className="diskon">30%</span> off
                   </h3>
-                  <h3>Boy's Fashion</h3>
+                  <h3>Boy&apos;s Fashion</h3>
                   <button className="btn_shop_now ml-1">
                     <a
                       href="#arrivals"

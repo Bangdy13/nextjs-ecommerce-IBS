@@ -9,7 +9,7 @@ const Notify = () => {
 
   return (
     <>
-      {notify.loading && <Loading />}
+      {notify.loading && <Loading />}x
       {notify.error && (
         <Toast
           msg={{ msg: notify.error, title: "Erorr message." }}
